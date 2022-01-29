@@ -4,10 +4,10 @@ import { LocationCityOutlined } from "@mui/icons-material";
 import Rating from "@mui/lab";
 import useStyles from "./styles";
 
-const Map = () => {
+const Map = ({ setCoordinate, coordinate }) => {
 	const styles = useStyles();
 	const isMobile = useMediaQuery("min-width:600px");
-	const coordinate = { lat: 0, lng: 0 };
+
 	return (
 		<div className={styles.mapContainer}>
 			<GoogleMapReact
@@ -15,7 +15,12 @@ const Map = () => {
 				defaultCenter={coordinate}
 				center={coordinate}
 				defaultZoom={14}
-				onChange={""}
+				onChange={(e) =>
+					setCoordinate({
+						lat: e.center.lat,
+						lng: e.center.lng,
+					})
+				}
 				onChildClick={""}
 				options={""}></GoogleMapReact>
 		</div>
