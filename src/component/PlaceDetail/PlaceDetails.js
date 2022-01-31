@@ -42,8 +42,9 @@ const PlaceDetails = ({ place }) => {
 						{place.ranking}
 					</Typography>
 				</Box>
-				{place?.awards?.map((award) => (
+				{place?.awards?.map((award, i) => (
 					<Box
+						key={i}
 						my={1}
 						display="flex"
 						justifyContent="space-between"

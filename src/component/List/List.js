@@ -6,12 +6,9 @@ import {
 	FormControl,
 	Select,
 } from "@mui/material";
-import { useState } from "react";
 import useStyles from "./styles";
 import PlaceDetails from "../PlaceDetail/PlaceDetails";
-const List = ({ places }) => {
-	const [type, setType] = useState("restaurants");
-	const [rating, setRating] = useState(0);
+const List = ({ places, type, setType, rating, setRating }) => {
 	const styles = useStyles();
 	return (
 		<div className={styles.container}>
@@ -25,7 +22,7 @@ const List = ({ places }) => {
 					value={type}
 					onChange={(e) => setType(e.target.value)}>
 					<MenuItem value={"restaurants"}>Restaurants</MenuItem>
-					<MenuItem value={"hotel"}>Hotels</MenuItem>
+					<MenuItem value={"hotels"}>Hotels</MenuItem>
 					<MenuItem value={"attractions"}>Attractions</MenuItem>
 				</Select>
 			</FormControl>

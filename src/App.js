@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 const App = () => {
 	const [places, setPlaces] = useState([]);
 	const [coordinate, setCoordinate] = useState({});
+	const [type, setType] = useState("restaurants");
+	const [rating, setRating] = useState(0);
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition(
 			({ coords: { latitude, longitude } }) => {
@@ -16,12 +18,12 @@ const App = () => {
 		);
 	}, []);
 	useEffect(() => {
-		getPlacesData(coordinate.lat, coordinate.lng).then((data) => {
-			console.log(coordinate);
-			console.log(data);
+		getPlacesData(coordinate.lat, coordinate.lng, type).then((data) => {
+			// console.log(coordinate);
+			// console.log(data);
 			setPlaces(data);
 		});
-	}, [coordinate]);
+	}, [coordinate, type]);
 
 	return (
 		<>
@@ -29,10 +31,20 @@ const App = () => {
 			<Header />
 			<Grid container spacing={3} style={{ width: "100%" }}>
 				<Grid item xs={12} md={4}>
-					<List places={places} />
+					<List
+						places={places}
+						type={type}
+						setType={setType}
+						rating={rating}
+						setRating={setRating}
+					/>
 				</Grid>
 				<Grid item xs={12} md={4}>
-					<Map setCoordinate={setCoordinate} coordinate={coordinate} />
+					<Map
+						setCoordinate={setCoordinate}
+						coordinate={coordinate}
+						places={places}
+					/>
 				</Grid>
 			</Grid>
 		</>
