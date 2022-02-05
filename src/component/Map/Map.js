@@ -18,7 +18,10 @@ const Map = ({ setCoordinate, coordinate, places }) => {
 					})
 				}
 				onChildClick={""}
-				options={""}></GoogleMapReact>
+				options={{
+					disableDefaultUI: true,
+					zoomControl: true,
+				}}></GoogleMapReact>
 		</div>
 	);
 };
